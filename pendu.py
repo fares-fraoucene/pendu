@@ -4,12 +4,12 @@ import sys
 pygame.init()
 width = 800
 height = 600
-fenetre = pygame.display.set_mode((width, height ))
-blanc = (255, 255, 255)
-noir = (0, 0, 0)
+screen = pygame.display.set_mode((width, height ))
+white = (255, 255, 255)
+black = (0, 0, 0)
 with open("mots.txt", "r") as fichier:
     mots = fichier.readlines()
-def choisir_mot():
+def choose_word():
     return random.choice(mots).strip()
 def afficher_mot_cache(mot, lettres_trouvees):
     mot_cache = ""
@@ -31,7 +31,7 @@ def dessiner_pendu(erreurs):
     ]
     return pendu_images[erreurs]
 def pendu():
-    mot_a_deviner = choisir_mot()
+    mot_a_deviner = choose_wordss()
     lettres_trouvees = []
     erreurs = 0
     tentatives_max = 6
@@ -53,12 +53,12 @@ def pendu():
                     else:
                         print("Mauvaise proposition.")
                         erreurs += 1
-        fenetre.fill(blanc)
+        screen.fill(white)
         mot_affiche = afficher_mot_cache(mot_a_deviner, lettres_trouvees)
-        mot_texte = police.render(mot_affiche, True, noir)
-        fenetre.blit(mot_texte, (20, 20))
+        mot_texte = police.render(mot_affiche, True, black)
+        screen.blit(mot_texte, (20, 20))
         pendu_image = dessiner_pendu(erreurs)
-        fenetre.blit(pendu_image, (400, 20))
+        screen.blit(pendu_image, (400, 20))
         pygame.display.flip()
         clock.tick(60)
 if __name__ == "__main__":
