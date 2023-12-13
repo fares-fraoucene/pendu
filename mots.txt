@@ -13,3 +13,5 @@ triangle
 ordinateur
 vaisseau 
 matraque
+
+salut
